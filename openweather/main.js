@@ -25,36 +25,27 @@ function normal() {
             document.querySelector('.temp-max').innerHTML = "Temp max :" + Math.round(data.main.temp_max - 273.15) + "C";
             document.querySelector('.temp-min').innerHTML = "Temp min :" + Math.round(data.main.temp_min - 273.15) + "C";
 
-
-            document.querySelector('#img-weather').style.border = '1px solid green';
-            document.querySelector('#img-weather').style.padding = '10px';
-            document.querySelector('#img-weather').style.borderRadius = '50%';
-            document.querySelector('#img-weather').style.background = '#74a7ab';
-            document.querySelector('#img-weather').style.width = '100px';
-            document.querySelector('#img-weather').style.height = '100px';
-
-            document.querySelector('#img-weather').setAttribute('src', url_img);
-
-            // fetch(url_img)
-            //     .then(function (response) {
-            //         return response.blob();
-            //     })
-            //     .then(image => {
-
-            //         console.log(image);
-
-            //         outside = URL.createObjectURL(image);
-            //         document.querySelector('#img-weather').style.border = '1px solid green';
-            //         document.querySelector('#img-weather').style.padding = '10px';
-            //         document.querySelector('#img-weather').style.borderRadius  = '50%';
-            //         document.querySelector('#img-weather').style.background   = '#74a7ab';
-            //         document.querySelector('#img-weather').style.width   = '100px';
-            //         document.querySelector('#img-weather').style.height   = '100px';
-
-            //         document.querySelector('#img-weather').setAttribute('src',outside);
+            fetch(url_img, { mode: 'no-cors'})
+                .then(function (response) {
+                    return response.blob();
+                })
+                .then(image => {
 
 
-            //     })
+                    
+                    console.log("image: ", image);
+                    outside = URL.createObjectURL(image);
+                    document.querySelector('#img-weather').style.border = '1px solid green';
+                    document.querySelector('#img-weather').style.padding = '10px';
+                    document.querySelector('#img-weather').style.borderRadius = '50%';
+                    document.querySelector('#img-weather').style.background = '#74a7ab';
+                    document.querySelector('#img-weather').style.width = '100px';
+                    document.querySelector('#img-weather').style.height = '100px';
+
+                    document.querySelector('#img-weather').setAttribute('src', outside);
+
+
+                })
 
         })
 }
